@@ -1,55 +1,36 @@
 import random
 
+
 def ordenamiento_por_mezcla(lista):
+    mid = len(lista)//2
     if len(lista) > 1:
-        medio = len(lista) // 2
-        izquierda = lista[:medio]
-        derecha = lista[medio:]
-        print(izquierda, '*' * 5, derecha)
+        L = lista[mid:]
+        R = lista[:mid]
 
-        # llamada recursiva en cada mitad
-        ordenamiento_por_mezcla(izquierda)
-        ordenamiento_por_mezcla(derecha)
+        lista.clear()
 
-        # Iteradores para recorrer las dos sublistas
-        i = 0
-        j = 0
-        # Iterador para la lista principal
-        k = 0
+        ordenamiento_por_mezcla(L)
+        ordenamiento_por_mezcla(R)
 
-        while i < len(izquierda) and j < len(derecha):
-            if izquierda[i] < derecha[j]:
-                lista[k] = izquierda[i]
-                i += 1
+        while len(L) > 0 and len(R) > 0:
+            if L[0] < R[0]:
+                lista.append(L.pop(0))
             else:
-                lista[k] = derecha[j]
-                j += 1
+                lista.append(R.pop(0))
 
-            k += 1
-
-        while i < len(izquierda):
-            lista[k] = izquierda[i]
-            i += 1
-            k +=1
-
-        while j < len(derecha):
-            lista[k] = derecha[j]
-            j += 1
-            k += 1
-        
-        print(f'izquierda {izquierda}, derecha {derecha}')
-        print(lista)
-        print('-' * 50)
-
-    return lista
+        while len(L) > 0:
+            lista.append(L.pop(0))
+        while len(R) > 0:
+            lista.append(R.pop(0))
+        return lista
 
 
 if __name__ == '__main__':
-    tamano_de_lista = int(input('De que tamano sera la lista? '))
+       tamano_de_lista = int(input('Deque tamaño sera la lista? '))
 
-    lista = [random.randint(0, 100) for i in range(tamano_de_lista)]
-    print(lista)
-    print('-' * 20)
+       lista = [random.randint(0, 100) for i in range(tamano_de_lista)]
 
-    lista_ordenada = ordenamiento_por_mezcla(lista)
-    print(lista_ordenada)
+       print(lista)
+       print('-' * 20)
+       lista_ordenada = ordenamiento_por_mezcla(lista)
+       print(lista_ordenada)
