@@ -26,7 +26,7 @@ def ordenamiento_por_mezcla(lista):
 
 
 if __name__ == '__main__':
-       tamano_de_lista = int(input('Deque tamaño sera la lista? '))
+       tamano_de_lista = int(input('De que tamaño sera la lista? '))
 
        lista = [random.randint(0, 100) for i in range(tamano_de_lista)]
 
